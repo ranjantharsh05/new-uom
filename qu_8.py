@@ -1,0 +1,55 @@
+def largest_product_in_series():
+    # The 1000-digit number as a single string
+    number_str = (
+        "73167176531330624919225119674426574742355349194934"
+        "96983520312774506326239578318016984801869478851843"
+        "85861568789112949495459501737958331952853208805511"
+        "12540698747158523863050715693290963295227443043557"
+        "66896648950445244523161731856403098711121722383113"
+        "622298934233808135336276614280644444486645238749"
+        "30358907296290491560440772390713810515859307960866"
+        "78172427121883998797908792274921901699720088093776"
+        "65727333001053367881220235421809751254540594752243"
+        "52584907711670556613604839586446706324415722155397"
+        "53697817977846174064955149290062569321978468622482"
+        "839722413756570560574961426147968652414535100474"
+        "821663704844031998900080952434506854122758666881"
+        "1642717147992444292823063465674813919123162824586"
+        "17866458359124566529476545682848912883142607690042"
+        "24219022671055626321111109370544217506941658960408"
+        "07198403850962455444362981230987879927244204909188"
+        "8458016616609791913387549920052463689912560717606"
+        "05886116467109405077541002256983155200055935729725"
+        "71636269561882670428252483600023257530420752963450"
+    )
+
+    # Window size is 13 digits
+    window_size = 13
+    
+    # Initialize max product
+    max_product = 0
+    
+    # Loop through the number to check all 13-digit sequences
+    for i in range(len(number_str) - window_size + 1):
+        # Get the 13-digit sequence
+        sequence_str = number_str[i : i + window_size]
+        
+        # Start product calculation
+        current_product = 1
+        for digit_char in sequence_str:
+            digit = int(digit_char)
+            # If a digit is 0, the product is 0. Break early.
+            if digit == 0:
+                current_product = 0
+                break
+            current_product *= digit
+        
+        # Update max product
+        if current_product > max_product:
+            max_product = current_product
+            
+    return max_product
+
+# Run and print the answer
+result = largest_product_in_series()
+print(f"The greatest product is: {result}")
